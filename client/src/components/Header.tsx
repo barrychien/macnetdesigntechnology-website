@@ -66,47 +66,18 @@ export default function Header() {
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '0px', textDecoration: 'none', maxWidth: '300px' }}
           >
-            {/* LOGO 圖示 */}
-            <div style={{
-              width: '44px',
-              height: '44px',
-              background: 'linear-gradient(135deg, #E91E63, #c2185b)',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 15px rgba(233, 30, 99, 0.4)',
-              flexShrink: 0,
-            }}>
-              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-                <path d="M4 13L13 4L22 13L13 22L4 13Z" stroke="white" strokeWidth="2" fill="rgba(255,255,255,0.2)" />
-                <path d="M13 4L22 13" stroke="white" strokeWidth="1.5" opacity="0.6" />
-                <circle cx="13" cy="13" r="3" fill="white" />
-              </svg>
-            </div>
-            <div>
-              <div style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 700,
-                fontSize: '1.2rem',
-                color: 'white',
-                lineHeight: 1.2,
-                letterSpacing: '0.02em',
-              }}>
-                悅慶資訊
-              </div>
-              <div style={{
-                fontFamily: "'Open Sans', sans-serif",
-                fontSize: '0.65rem',
-                color: 'rgba(255,255,255,0.5)',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-              }}>
-                Macnet Technology
-              </div>
-            </div>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/macnet-logo_2322dfd1.jpg"
+              alt="Macnet Logo"
+              style={{
+                height: '48px',
+                width: 'auto',
+                objectFit: 'contain',
+                flexShrink: 0,
+              }}
+            />
           </a>
 
           {/* 桌面導航 */}
