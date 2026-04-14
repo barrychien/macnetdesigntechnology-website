@@ -100,9 +100,9 @@ export default function Header() {
               minWidth: 0,
             }} className="hidden sm:flex">
               <div style={{
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 700,
-                fontSize: 'clamp(0.9rem, 2.2vw, 1rem)',
+                fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)',
                 color: 'white',
                 lineHeight: 1.1,
                 letterSpacing: '0.02em',
