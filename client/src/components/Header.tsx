@@ -1,9 +1,9 @@
 /**
  * Header 元件 - 悅慶資訊
  * 設計: 深藍色 (#1C2C45) 背景, 固定頂部, 滾動時加深背景
- * 左側: 去背 LOGO 圖示 + 中文「悅慶資訊」
+ * 左側: 去背 LOGO 圖示 + 「Macnet 悅慶資訊」文字
  * 右側: 導航連結
- * RWD: 完全響應式設計
+ * RWD: 完全響應式設計，下拉選單背景色一致
  */
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
@@ -47,6 +47,10 @@ export default function Header() {
     }
   };
 
+  // 計算背景顏色 - 確保下拉時也是同樣的顏色
+  const headerBgColor = scrolled ? 'rgba(10, 22, 40, 0.97)' : '#1C2C45';
+  const headerBgColorDarker = scrolled ? 'rgba(10, 22, 40, 0.97)' : 'rgba(10, 22, 40, 0.95)';
+
   return (
     <header
       style={{
@@ -55,7 +59,7 @@ export default function Header() {
         left: 0,
         right: 0,
         zIndex: 1000,
-        backgroundColor: scrolled ? 'rgba(10, 22, 40, 0.97)' : '#1C2C45',
+        backgroundColor: headerBgColor,
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
         boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,0.3)' : 'none',
         transition: 'all 0.3s ease',
@@ -71,7 +75,7 @@ export default function Header() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
+              gap: '12px',
               textDecoration: 'none',
               minWidth: 0,
               flex: '0 1 auto',
@@ -79,7 +83,7 @@ export default function Header() {
           >
             {/* LOGO 圖示 */}
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/macnet-logo-transparent_83f252d7.png"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/macnet-logo-w-transparent_d2748ddb.png"
               alt="Macnet Logo"
               style={{
                 height: '48px',
@@ -88,7 +92,7 @@ export default function Header() {
                 flexShrink: 0,
               }}
             />
-            {/* 中文文字 - 桌面版顯示 */}
+            {/* 文字 - 桌面版顯示 */}
             <div style={{
               display: 'none',
               flexDirection: 'column',
@@ -98,13 +102,13 @@ export default function Header() {
               <div style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
-                fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)',
+                fontSize: 'clamp(0.9rem, 2.2vw, 1rem)',
                 color: 'white',
                 lineHeight: 1.1,
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
               }}>
-                悅慶資訊
+                Macnet 悅慶資訊
               </div>
             </div>
           </a>
@@ -198,11 +202,12 @@ export default function Header() {
       {/* 手機選單 */}
       {mobileOpen && (
         <div style={{
-          background: 'rgba(10, 22, 40, 0.98)',
+          background: headerBgColorDarker,
           borderTop: '1px solid rgba(233, 30, 99, 0.2)',
           padding: '1rem 0',
           display: 'block',
           animation: 'slideDown 0.3s ease',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
         }}>
           <div className="container">
             {navItems.map((item) => (
