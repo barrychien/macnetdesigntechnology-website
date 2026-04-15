@@ -202,7 +202,7 @@ export default function TeamSection() {
                     justifyContent: 'center',
                     width: '56px',
                     height: '56px',
-                    background: team.bgGradient,
+                    background: '#1C2C45',
                     borderRadius: '12px',
                     marginBottom: '1rem',
                   }}
