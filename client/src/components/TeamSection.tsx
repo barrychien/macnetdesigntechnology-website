@@ -13,6 +13,7 @@ const teams = [
     skills: ['.NET', 'Java', '資料庫', '雲端', '微服務'],
     icon: Code2,
     color: '#E91E63',
+    bgGradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const teams = [
     skills: ['Swift', 'Kotlin', 'Android', 'iOS', 'Flutter'],
     icon: Smartphone,
     color: '#E91E63',
+    bgGradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ const teams = [
     skills: ['專案經理', '系統分析', '系統架構', '程式開發'],
     icon: Users,
     color: '#E91E63',
+    bgGradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ const teams = [
     skills: ['UX/UI', 'Illustrator', 'Figma', 'Zeplin'],
     icon: Palette,
     color: '#E91E63',
+    bgGradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
   },
 ];
 
@@ -198,14 +202,14 @@ export default function TeamSection() {
                     justifyContent: 'center',
                     width: '56px',
                     height: '56px',
-                    background: '#1C2C45',
+                    background: team.bgGradient,
                     borderRadius: '12px',
                     marginBottom: '1rem',
                   }}
                 >
                   <IconComponent
                     size={28}
-                    style={{ color: '#E91E63', strokeWidth: 1.5 }}
+                    style={{ color: 'white', strokeWidth: 1.5 }}
                   />
                 </div>
 
