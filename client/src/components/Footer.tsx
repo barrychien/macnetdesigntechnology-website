@@ -19,29 +19,16 @@ export default function Footer() {
           gap: '1rem',
         }}>
           {/* LOGO */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{
-              width: '32px',
-              height: '32px',
-              background: 'linear-gradient(135deg, #E91E63, #c2185b)',
-              borderRadius: '6px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <svg width="18" height="18" viewBox="0 0 26 26" fill="none">
-                <path d="M4 13L13 4L22 13L13 22L4 13Z" stroke="white" strokeWidth="2" fill="rgba(255,255,255,0.2)" />
-                <circle cx="13" cy="13" r="2.5" fill="white" />
-              </svg>
-            </div>
-            <span style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 700,
-              fontSize: '1rem',
-              color: 'white',
-            }}>
-              悅慶資訊
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663555912533/xsBjmOKYNDBMqbGC.png"
+              alt="Macnet 悅慶資訊"
+              style={{
+                height: '50px',
+                width: 'auto',
+                objectFit: 'contain',
+              }}
+            />
           </div>
 
           {/* 版權 */}
