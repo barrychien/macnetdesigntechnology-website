@@ -108,7 +108,7 @@ export default function Header() {
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
               }}>
-                Macnet 悅慶資訊
+                Macnet | 悅慶資訊
               </div>
             </div>
           </a>
