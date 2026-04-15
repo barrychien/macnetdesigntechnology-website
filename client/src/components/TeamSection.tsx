@@ -205,7 +205,7 @@ export default function TeamSection() {
                 >
                   <IconComponent
                     size={28}
-                    style={{ color: 'white', strokeWidth: 1.5 }}
+                    style={{ color: '#E91E63', strokeWidth: 1.5 }}
                   />
                 </div>
 
