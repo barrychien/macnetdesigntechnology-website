@@ -198,14 +198,14 @@ export default function TeamSection() {
                     justifyContent: 'center',
                     width: '56px',
                     height: '56px',
-                    background: 'rgba(233, 30, 99, 0.1)',
+                    background: '#1C2C45',
                     borderRadius: '12px',
                     marginBottom: '1rem',
                   }}
                 >
                   <IconComponent
                     size={28}
-                    style={{ color: team.color, strokeWidth: 1.5 }}
+                    style={{ color: 'white', strokeWidth: 1.5 }}
                   />
                 </div>
 
@@ -249,8 +249,8 @@ export default function TeamSection() {
                       key={idx}
                       style={{
                         display: 'inline-block',
-                        background: 'rgba(233, 30, 99, 0.08)',
-                        color: '#E91E63',
+                        background: '#e5e5e5',
+                        color: '#000',
                         padding: '0.4rem 0.75rem',
                         borderRadius: '16px',
                         fontFamily: "'Open Sans', sans-serif",
