@@ -83,7 +83,7 @@ export default function Header() {
           >
             {/* LOGO 圖示 */}
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/macnet-logo-w-transparent_d2748ddb.png"
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663555912533/xsBjmOKYNDBMqbGC.png"
               alt="Macnet Logo"
               style={{
                 height: '48px',
