@@ -1,6 +1,7 @@
 /**
  * Footer 元件 - 悅慶資訊
  * 設計: 深藍色背景, 版權資訊
+ * 佈局: LOGO 靠左縮小, 版權文字置於中間, 快速連結靠右
  */
 
 export default function Footer() {
@@ -16,33 +17,35 @@ export default function Footer() {
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '1rem',
+          gap: '2rem',
         }}>
-          {/* LOGO */}
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          {/* LOGO - 靠左縮小 */}
+          <div style={{ display: 'flex', alignItems: 'center', flex: '0 0 auto' }}>
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/footer-logo-transparent_3e220dc8.png"
               alt="Macnet 悅慶資訊"
               style={{
-                height: '50px',
+                height: '35px',
                 width: 'auto',
                 objectFit: 'contain',
               }}
             />
           </div>
 
-          {/* 版權 */}
+          {/* 版權 - 中間 */}
           <div style={{
             fontFamily: "'Open Sans', sans-serif",
             fontSize: '0.85rem',
             color: 'rgba(255,255,255,0.4)',
             textAlign: 'center',
+            flex: '1 1 auto',
+            minWidth: '200px',
           }}>
             All rights reserved © 2026 | from 悅慶有限公司
           </div>
 
-          {/* 快速連結 */}
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
+          {/* 快速連結 - 靠右 */}
+          <div style={{ display: 'flex', gap: '1.5rem', flex: '0 0 auto' }}>
             {[
               { label: '關於悅慶', href: '#about' },
               { label: '服務項目', href: '#services' },
