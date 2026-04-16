@@ -21,7 +21,7 @@ export default function Footer() {
           {/* LOGO */}
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663555912533/xsBjmOKYNDBMqbGC.png"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/footer-logo-transparent_3e220dc8.png"
               alt="Macnet 悅慶資訊"
               style={{
                 height: '50px',
