@@ -102,13 +102,13 @@ export default function Header() {
               <div style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 700,
-                fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)',
+                fontSize: 'clamp(1.3rem, 3vw, 1.5rem)',
                 color: 'white',
                 lineHeight: 1.1,
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
               }}>
-                Macnet | 悅慶資訊
+                悅慶資訊
               </div>
             </div>
           </a>
