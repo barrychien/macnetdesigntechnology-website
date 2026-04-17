@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
-  { label: '關於悅慶', href: '#about' },
+  { label: '悅慶資訊', href: '#about' },
   { label: '服務項目', href: '#services' },
   { label: '成功案例', href: '#portfolio' },
   { label: '團隊介紹', href: '#team' },
