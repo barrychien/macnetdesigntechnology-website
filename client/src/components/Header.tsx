@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
-  { label: '關於悅慶', href: '#about' },
+  { label: '悅慶資訊', href: '#about' },
   { label: '服務項目', href: '#services' },
   { label: '成功案例', href: '#portfolio' },
   { label: '團隊介紹', href: '#team' },
@@ -83,7 +83,7 @@ export default function Header() {
           >
             {/* LOGO 圖示 */}
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/macnet-logo-w-transparent_d2748ddb.png"
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663555912533/xsBjmOKYNDBMqbGC.png"
               alt="Macnet Logo"
               style={{
                 height: '48px',
@@ -92,25 +92,7 @@ export default function Header() {
                 flexShrink: 0,
               }}
             />
-            {/* 文字 - 桌面版顯示 */}
-            <div style={{
-              display: 'none',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              minWidth: 0,
-            }} className="hidden sm:flex">
-              <div style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)',
-                color: 'white',
-                lineHeight: 1.1,
-                letterSpacing: '0.02em',
-                whiteSpace: 'nowrap',
-              }}>
-                Macnet 悅慶資訊
-              </div>
-            </div>
+            {/* 文字已移除 */}
           </a>
 
           {/* 桌面導航 */}
@@ -130,7 +112,7 @@ export default function Header() {
                   color: activeSection === item.href.slice(1) ? '#E91E63' : 'rgba(255,255,255,0.8)',
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 500,
-                  fontSize: '0.9rem',
+                  fontSize: '1.05rem',
                   textDecoration: 'none',
                   transition: 'color 0.3s ease',
                   letterSpacing: '0.02em',
@@ -156,7 +138,7 @@ export default function Header() {
               borderRadius: '4px',
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 600,
-              fontSize: '0.85rem',
+              fontSize: '1rem',
               textDecoration: 'none',
               transition: 'all 0.3s ease',
               letterSpacing: '0.03em',
