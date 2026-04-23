@@ -1,12 +1,11 @@
 /**
  * 聯絡我們區塊 - 悅慶資訊
  * 設計: 深藍色背景, 左側資訊+地圖, 右側聯絡表單
- * 表單發送到 barry.chien@macnetdesign.com (透過 Formspree)
+ * 表單發送到 barry.chien@macnetdesign.com
  * 使用 Google Maps 嵌入
  */
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import { toast } from 'sonner';
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -40,44 +39,22 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // 驗證必填欄位
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      toast.error('請填寫所有必填欄位');
-      return;
-    }
-
     setStatus('sending');
 
-    try {
-      // 發送到 Formspree
-      const response = await fetch('https://formspree.io/f/mdayeagn', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject || '來自悅慶資訊網站的詢問',
-          message: formData.message,
-        }),
-      });
-
-      if (response.ok) {
-        setStatus('success');
-        toast.success('訊息已成功發送！我們將盡快回覆您。');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        throw new Error('發送失敗');
-      }
-    } catch (error) {
-      console.error('表單提交錯誤:', error);
-      setStatus('error');
-      toast.error('發送失敗，請直接聯繫 barry.chien@macnetdesign.com');
+    // 使用 mailto 方式發送
+    const subject = encodeURIComponent(formData.subject || '來自悅慶資訊網站的詢問');
+    const body = encodeURIComponent(
+      `姓名: ${formData.name}\n電子郵件: ${formData.email}\n\n${formData.message}`
+    );
+    const mailtoLink = `mailto:barry.chien@macnetdesign.com?subject=${subject}&body=${body}`;
+    
+    // 模擬發送延遲
+    setTimeout(() => {
+      window.location.href = mailtoLink;
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setStatus('idle'), 5000);
-    }
+    }, 800);
   };
 
   return (
@@ -176,7 +153,7 @@ export default function ContactSection() {
                 {
                   icon: <MapPin size={20} color="#E91E63" />,
                   label: '地址',
-                  value: '台北市松山區南京東路五段16號11樓之三',
+                  value: '台北市中山區民族北路179號12樓之4\n悅慶有限公司',
                 },
                 {
                   icon: <Phone size={20} color="#E91E63" />,
@@ -241,7 +218,7 @@ export default function ContactSection() {
               boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
             }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.6789!2d121.5456!3d25.0505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a8f5c5c5c5c5%3A0x0!2z5Y-w5YyX5biC5Lit5bGx5Y2A5rCR5peP5YyX6Lev17k1aDAx!5e0!3m2!1szh-TW!2stw!4v1713000000001!5m2!1szh-TW!2stw"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.9527892!2d121.5257!3d25.0641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9a5a5a5a5a5%3A0x0!2z5Y-w5YyX5biC5Lit5bGx5Y2A5rCR5peP5YyX6Lev17kxNzk!5e0!3m2!1szh-TW!2stw!4v1713000000001!5m2!1szh-TW!2stw"
                 width="100%"
                 height="280"
                 style={{ border: 0, display: 'block' }}
@@ -392,7 +369,7 @@ export default function ContactSection() {
                     fontSize: '0.875rem',
                   }}>
                     <CheckCircle size={16} />
-                    訊息已成功發送！我們將盡快回覆您。
+                    郵件應用程式已開啟，請確認並發送您的訊息
                   </div>
                 )}
 
@@ -471,17 +448,19 @@ export default function ContactSection() {
             </div>
           </div>
         </div>
-
-        {/* 響應式調整 */}
-        <style>{`
-          @media (max-width: 768px) {
-            .contact-grid {
-              grid-template-columns: 1fr !important;
-              gap: 2rem !important;
-            }
-          }
-        `}</style>
       </div>
+
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        @media (max-width: 768px) {
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
