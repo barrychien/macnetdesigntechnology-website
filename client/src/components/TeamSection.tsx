@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Code2, Smartphone, Users, Palette } from 'lucide-react';
 
 export default function TeamSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hoveredTeamId, setHoveredTeamId] = useState<number | null>(null);
 
   const teams = [
     {
@@ -231,12 +232,30 @@ export default function TeamSection() {
                     zIndex: 1,
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = team.accentColor;
-                    (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)';
+                    const container = e.currentTarget as HTMLElement;
+                    container.style.background = team.accentColor;
+                    container.style.transform = 'scale(1.1)';
+                    const svg = container.querySelector('svg') as SVGElement;
+                    if (svg) {
+                      svg.style.color = 'white';
+                      // 更新所有 stroke 屬性
+                      svg.querySelectorAll('*').forEach((el) => {
+                        (el as SVGElement).style.stroke = 'white';
+                      });
+                    }
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = `${team.accentColor}15`;
-                    (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+                    const container = e.currentTarget as HTMLElement;
+                    container.style.background = `${team.accentColor}15`;
+                    container.style.transform = 'scale(1)';
+                    const svg = container.querySelector('svg') as SVGElement;
+                    if (svg) {
+                      svg.style.color = team.accentColor;
+                      // 恢復所有 stroke 屬性
+                      svg.querySelectorAll('*').forEach((el) => {
+                        (el as SVGElement).style.stroke = team.accentColor;
+                      });
+                    }
                   }}
                 >
                   <IconComponent
@@ -244,6 +263,7 @@ export default function TeamSection() {
                     style={{
                       color: team.accentColor,
                       strokeWidth: 2,
+                      transition: 'all 0.3s ease',
                     }}
                   />
                 </div>
