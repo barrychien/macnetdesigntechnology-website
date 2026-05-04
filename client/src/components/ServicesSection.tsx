@@ -9,64 +9,64 @@ const services = [
   {
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="4" width="32" height="32" rx="4" stroke="#E91E63" strokeWidth="1.5" fill="none" />
-        <path d="M12 20L17 25L28 14" stroke="#E91E63" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="20" cy="20" r="3" fill="#E91E63" opacity="0.3" />
+        <rect x="4" y="4" width="32" height="32" rx="4" stroke="#C97A9A" strokeWidth="1.5" fill="none" />
+        <path d="M12 20L17 25L28 14" stroke="#C97A9A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="20" cy="20" r="3" fill="#C97A9A" opacity="0.3" />
         <path d="M8 12h6M8 20h4M8 28h8" stroke="#1C2C45" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
       </svg>
     ),
     title: '軟體專案開發',
     description: '從需求分析到上線維護，提供端到端的軟體開發解決方案，確保每個環節的品質與效率。',
     features: ['需求分析與規劃', '系統架構設計', '敏捷開發實施', '品質保證與測試'],
-    color: '#E91E63',
+    color: '#C97A9A',
   },
   {
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="14" r="6" stroke="#3B82F6" strokeWidth="1.5" fill="none" />
-        <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-        <path d="M28 18l4 4-4 4" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M32 22h-8" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="20" cy="14" r="6" stroke="#8B9DC3" strokeWidth="1.5" fill="none" />
+        <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#8B9DC3" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+        <path d="M28 18l4 4-4 4" stroke="#8B9DC3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M32 22h-8" stroke="#8B9DC3" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
     title: '軟體駐點服務',
     description: '派遣專業技術人員到客戶現場，提供長期技術支援與系統維護，確保業務連續性與穩定運作。',
     features: ['技術諮詢顧問', '系統維護管理', '專業人力派遣', '技術培訓服務'],
-    color: '#3B82F6',
+    color: '#8B9DC3',
   },
   {
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="8" width="20" height="14" rx="2" stroke="#10B981" strokeWidth="1.5" fill="none" />
-        <rect x="16" y="18" width="20" height="14" rx="2" stroke="#10B981" strokeWidth="1.5" fill="none" />
-        <path d="M10 15h8M10 19h5" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M22 25h8M22 29h5" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="28" cy="10" r="4" fill="#10B981" opacity="0.2" stroke="#10B981" strokeWidth="1" />
-        <path d="M26.5 10L28 11.5L30 9" stroke="#10B981" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="4" y="8" width="20" height="14" rx="2" stroke="#7ECCC4" strokeWidth="1.5" fill="none" />
+        <rect x="16" y="18" width="20" height="14" rx="2" stroke="#7ECCC4" strokeWidth="1.5" fill="none" />
+        <path d="M10 15h8M10 19h5" stroke="#7ECCC4" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M22 25h8M22 29h5" stroke="#7ECCC4" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="28" cy="10" r="4" fill="#7ECCC4" opacity="0.2" stroke="#7ECCC4" strokeWidth="1" />
+        <path d="M26.5 10L28 11.5L30 9" stroke="#7ECCC4" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     title: '網頁與 APP 開發',
     description: '打造響應式網站與跨平台行動應用，以使用者體驗為核心，提升業務數位化競爭力。',
     features: ['響應式網頁設計', 'iOS 原生開發', 'Android 原生開發', 'UX/UI 設計規劃'],
-    color: '#10B981',
+    color: '#7ECCC4',
   },
   {
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="4" width="14" height="14" rx="2" stroke="#F59E0B" strokeWidth="1.5" fill="none" />
-        <rect x="22" y="4" width="14" height="14" rx="2" stroke="#F59E0B" strokeWidth="1.5" fill="none" />
-        <rect x="4" y="22" width="14" height="14" rx="2" stroke="#F59E0B" strokeWidth="1.5" fill="none" />
-        <rect x="22" y="22" width="14" height="14" rx="2" stroke="#F59E0B" strokeWidth="1.5" fill="none" />
-        <path d="M18 11h4M20 9v4" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M18 29h4M20 27v4" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="29" cy="11" r="2" fill="#F59E0B" opacity="0.5" />
-        <circle cx="11" cy="29" r="2" fill="#F59E0B" opacity="0.5" />
+        <rect x="4" y="4" width="14" height="14" rx="2" stroke="#D4B896" strokeWidth="1.5" fill="none" />
+        <rect x="22" y="4" width="14" height="14" rx="2" stroke="#D4B896" strokeWidth="1.5" fill="none" />
+        <rect x="4" y="22" width="14" height="14" rx="2" stroke="#D4B896" strokeWidth="1.5" fill="none" />
+        <rect x="22" y="22" width="14" height="14" rx="2" stroke="#D4B896" strokeWidth="1.5" fill="none" />
+        <path d="M18 11h4M20 9v4" stroke="#D4B896" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M18 29h4M20 27v4" stroke="#D4B896" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="29" cy="11" r="2" fill="#D4B896" opacity="0.5" />
+        <circle cx="11" cy="29" r="2" fill="#D4B896" opacity="0.5" />
       </svg>
     ),
     title: '系統導入與整合',
     description: '協助企業導入 ERP、CRM 等企業系統，實現業務流程優化，提升整體營運效率。',
     features: ['系統評估規劃', '導入專案管理', '資料遷移整合', '員工教育訓練'],
-    color: '#F59E0B',
+    color: '#D4B896',
   },
 ];
 
@@ -109,13 +109,13 @@ export default function ServicesSection() {
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <div style={{
             display: 'inline-block',
-            background: 'rgba(233, 30, 99, 0.08)',
-            border: '1px solid rgba(233, 30, 99, 0.2)',
+            background: 'rgba(201, 122, 154, 0.08)',
+            border: '1px solid rgba(201, 122, 154, 0.2)',
             borderRadius: '100px',
             padding: '0.3rem 1rem',
             marginBottom: '1rem',
           }}>
-            <span style={{ color: '#E91E63', fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: '0.8rem', letterSpacing: '0.1em' }}>
+            <span style={{ color: '#C97A9A', fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: '0.8rem', letterSpacing: '0.1em' }}>
               OUR SERVICES
             </span>
           </div>
@@ -128,7 +128,7 @@ export default function ServicesSection() {
           }}>
             核心服務項目
           </h2>
-          <div style={{ width: '60px', height: '4px', background: '#E91E63', margin: '0 auto 1.5rem' }} />
+          <div style={{ width: '60px', height: '4px', background: '#C97A9A', margin: '0 auto 1.5rem' }} />
           <p style={{
             fontFamily: "'Open Sans', sans-serif",
             color: '#64748B',
@@ -251,8 +251,8 @@ export default function ServicesSection() {
                 transition: 'all 0.3s ease',
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = '#E91E63';
-                (e.currentTarget as HTMLElement).style.color = '#E91E63';
+                (e.currentTarget as HTMLElement).style.borderColor = '#C97A9A';
+                (e.currentTarget as HTMLElement).style.color = '#C97A9A';
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = '#E2E8F0';
