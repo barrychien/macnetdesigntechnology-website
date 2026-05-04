@@ -1,25 +1,36 @@
 /**
  * 成功案例區塊 - 悅慶資訊
- * 設計: 白色背景, 無限滾動 LOGO 輪播, 簡約呈現
+ * 設計: 白色背景, 分行無重複輪播, 簡約呈現
  */
 import { useEffect, useRef } from 'react';
 
+// 按用戶提供的順序排列
 const clients = [
-  { name: '國泰人壽', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/cathay-life_df5a34f4.png' },
-  { name: '富邦人壽', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/fubon-life_03db2650.png' },
-  { name: '凱基人壽', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/kgi-life_d8d91168.jpg' },
-  { name: '明台產險', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/mingtai_93f1682e.png' },
-  { name: '兆豐產險', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/mega-insurance_f188051c.png' },
-  { name: '和泰產險', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/hotai_2a92bbd5.png' },
-  { name: 'MOMO富邦媒體', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/momo_ee9b1a29.jpg' },
-  { name: '遊戲橘子', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/gamania_d548160b.png' },
-  { name: '宏碁資訊', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/acer_c0846d96.png' },
-  { name: '精誠資訊', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/systex_36e6ff61.jpg' },
-  { name: '中小企業信保基金', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/smeg_def6af0e.png' },
-  { name: '關貿網路', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/tradevan_f8a7139c.png' },
-  { name: '1111人力銀行', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/1111_3970e9ac.png' },
-  { name: '統一資訊', logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/uni-pic_2dd01c6c.jpg' },
+  { name: '國泰人壽', logo: 'https://static.104.com.tw/b_profile/cust_picture/7615/130000000157615/logo.png?v=20241126225105' },
+  { name: '富邦人壽', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0GrjWRHw7UZycWeNMjUM4B1tM_PyU2sAO2g&s' },
+  { name: '凱基人壽', logo: 'https://sso.kgilife.com.tw/SSOA/images/logo.png' },
+  { name: '明台產險', logo: 'https://ec.msig-mingtai.com.tw/SP/FrontWebNew/Images/08LOGOB_S.png' },
+  { name: '兆豐產險', logo: 'https://upload.wikimedia.org/wikipedia/zh/thumb/f/fb/Mega_Holdings.svg/500px-Mega_Holdings.svg.png' },
+  { name: '和泰產險', logo: 'https://images.ctee.com.tw/newsphoto/2023-06-06/1024/20230606700051.jpg' },
+  { name: 'MOMO富邦媒體科技', logo: 'https://www.netpro.com.tw/wp-content/uploads/customer_09200_momo%E5%AF%8C%E9%82%A6%E5%AA%92%E9%AB%94%E7%A7%91%E6%8A%80.png' },
+  { name: '遊戲橘子', logo: 'https://ir.gamania.com/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUFJIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--44951e9c4179234709ac507bc7c6ff1c0b785c2d/gamania_logo_h_black.png' },
+  { name: '宏碁資訊', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcC1NAQ6duSxqnYFkIup-JKvcG8xJYfB2RGg&s' },
+  { name: '精誠資訊', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyZXkHo8Aofy-vWAsodP6yrZKPUuMgU94oSw&s' },
+  { name: '財團法人中小企業信用保證基金', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsF1HzEp-2Bd50ccWJaplSvKoW40vKGtaDxQ&s' },
+  { name: '關貿網路', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6a1um28NS071mRgl3jI_7s7qtysEPO8N_Zg&s' },
+  { name: '1111人力銀行', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYS3bP4y71cqovA4p6NkZ0dZpopxxwxUBHaw&s' },
+  { name: '買保險', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ18q874jSdiR6E5EEwzI8x_IyWmbzBU3ZuTg&s' },
+  { name: '統一資訊', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJvz1Zmnor3YQv_1Oq88ZvPhS2eHniMbuRoA&s' },
+  { name: '寬聯資訊', logo: 'https://www.kli.com.tw/images/logo.svg' },
+  { name: '資拓宏宇', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtDE2P6l8kW0kOSYfE-4bPg5x-DwhQ6sigSw&s' },
+  { name: '中租迪和', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOfijon3LCiJCpFrEye5KMMBZ2nWkzBVrwyg&s' },
+  { name: '資通電腦', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1ilFxgLYZ5Y5-gi8qmHVOw9HNiP_iyg5XiQ&s' },
+  { name: '碩益科技', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT686MOdlq65wfxjN-klXEoMdHdO0ki23Esyg&s' },
 ];
+
+// 分成兩行：奇數索引為第一行，偶數索引為第二行
+const row1 = clients.filter((_, i) => i % 2 === 0);
+const row2 = clients.filter((_, i) => i % 2 === 1);
 
 export default function PortfolioSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -41,10 +52,74 @@ export default function PortfolioSection() {
   }, []);
 
   // 複製一份以實現無縫滾動
-  const allClients = [...clients, ...clients];
+  const allRow1 = [...row1, ...row1];
+  const allRow2 = [...row2, ...row2];
+
+  const LogoCard = ({ client }: { client: typeof clients[0] }) => (
+    <div
+      style={{
+        flexShrink: 0,
+        width: '160px',
+        height: '80px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '1rem',
+        background: 'white',
+        border: '1px solid #E8E8E8',
+        borderRadius: '8px',
+        transition: 'all 0.3s ease',
+        cursor: 'default',
+      }}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = '#E91E63';
+        el.style.boxShadow = '0 8px 25px rgba(233, 30, 99, 0.15)';
+        el.style.transform = 'translateY(-4px)';
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = '#E8E8E8';
+        el.style.boxShadow = 'none';
+        el.style.transform = 'translateY(0)';
+      }}
+    >
+      <img
+        src={client.logo}
+        alt={client.name}
+        style={{
+          maxWidth: '130px',
+          maxHeight: '55px',
+          objectFit: 'contain',
+          filter: 'grayscale(30%)',
+          transition: 'filter 0.3s ease',
+        }}
+        onMouseEnter={(e) => (e.target as HTMLImageElement).style.filter = 'grayscale(0%)'}
+        onMouseLeave={(e) => (e.target as HTMLImageElement).style.filter = 'grayscale(30%)'}
+      />
+    </div>
+  );
 
   return (
     <section id="portfolio" ref={sectionRef} style={{ padding: '100px 0', background: 'white', overflow: 'hidden' }}>
+      <style>{`
+        @keyframes scroll-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .logo-track {
+          display: flex;
+          gap: 1.5rem;
+          animation: scroll-left 60s linear infinite;
+          width: fit-content;
+        }
+
+        .logo-track:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
       <div className="container">
         {/* 標題 */}
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -109,50 +184,8 @@ export default function PortfolioSection() {
         }} />
 
         <div className="logo-track" style={{ padding: '1rem 0' }}>
-          {allClients.map((client, index) => (
-            <div
-              key={index}
-              style={{
-                flexShrink: 0,
-                width: '160px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '1rem',
-                background: 'white',
-                border: '1px solid #F1F5F9',
-                borderRadius: '8px',
-                transition: 'all 0.3s ease',
-                cursor: 'default',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = '#E91E63';
-                el.style.boxShadow = '0 8px 25px rgba(233, 30, 99, 0.15)';
-                el.style.transform = 'translateY(-4px)';
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = '#F1F5F9';
-                el.style.boxShadow = 'none';
-                el.style.transform = 'translateY(0)';
-              }}
-            >
-              <img
-                src={client.logo}
-                alt={client.name}
-                style={{
-                  maxWidth: '130px',
-                  maxHeight: '55px',
-                  objectFit: 'contain',
-                  filter: 'grayscale(30%)',
-                  transition: 'filter 0.3s ease',
-                }}
-                onMouseEnter={(e) => (e.target as HTMLImageElement).style.filter = 'grayscale(0%)'}
-                onMouseLeave={(e) => (e.target as HTMLImageElement).style.filter = 'grayscale(30%)'}
-              />
-            </div>
+          {allRow1.map((client, index) => (
+            <LogoCard key={index} client={client} />
           ))}
         </div>
       </div>
@@ -184,52 +217,11 @@ export default function PortfolioSection() {
           className="logo-track"
           style={{
             padding: '1rem 0',
-            animationDirection: 'reverse',
+            animation: 'scroll-left 60s linear infinite reverse',
           }}
         >
-          {[...allClients].reverse().map((client, index) => (
-            <div
-              key={index}
-              style={{
-                flexShrink: 0,
-                width: '160px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '1rem',
-                background: '#FAFAFA',
-                border: '1px solid #F1F5F9',
-                borderRadius: '8px',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = '#E91E63';
-                el.style.boxShadow = '0 8px 25px rgba(233, 30, 99, 0.15)';
-                el.style.transform = 'translateY(-4px)';
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = '#F1F5F9';
-                el.style.boxShadow = 'none';
-                el.style.transform = 'translateY(0)';
-              }}
-            >
-              <img
-                src={client.logo}
-                alt={client.name}
-                style={{
-                  maxWidth: '130px',
-                  maxHeight: '55px',
-                  objectFit: 'contain',
-                  filter: 'grayscale(30%)',
-                  transition: 'filter 0.3s ease',
-                }}
-                onMouseEnter={(e) => (e.target as HTMLImageElement).style.filter = 'grayscale(0%)'}
-                onMouseLeave={(e) => (e.target as HTMLImageElement).style.filter = 'grayscale(30%)'}
-              />
-            </div>
+          {allRow2.map((client, index) => (
+            <LogoCard key={index} client={client} />
           ))}
         </div>
       </div>
