@@ -1,11 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { Code2, Smartphone, Users, Palette, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { Code2, Smartphone, Users, Palette } from 'lucide-react';
 
 export default function TeamSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(true);
 
   const teams = [
     {
@@ -17,8 +14,6 @@ export default function TeamSection() {
       skills: ['React', 'Node.js', 'TypeScript', 'AWS', 'Docker'],
       stats: '50+ 專案',
       icon: Code2,
-      accentColor: '#C97A9A',
-      borderColor: '#C97A9A',
     },
     {
       id: 2,
@@ -29,8 +24,6 @@ export default function TeamSection() {
       skills: ['Swift', 'Kotlin', 'React Native', 'Firebase', 'Xcode'],
       stats: '30+ 應用',
       icon: Smartphone,
-      accentColor: '#8B9DC3',
-      borderColor: '#8B9DC3',
     },
     {
       id: 3,
@@ -41,8 +34,6 @@ export default function TeamSection() {
       skills: ['技術顧問', '系統架構', '團隊管理', '項目管理', '技術培訓'],
       stats: '100+ 客戶',
       icon: Users,
-      accentColor: '#7ECCC4',
-      borderColor: '#7ECCC4',
     },
     {
       id: 4,
@@ -53,49 +44,20 @@ export default function TeamSection() {
       skills: ['UI/UX', 'Figma', '品牌設計', '動畫設計', '用戶研究'],
       stats: '80+ 案例',
       icon: Palette,
-      accentColor: '#D4B896',
-      borderColor: '#D4B896',
     },
   ];
-
-  // 自動輪播
-  useEffect(() => {
-    if (!autoPlay) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % teams.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [autoPlay, teams.length]);
-
-  // 滑動到對應的卡片
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      const cardWidth = scrollContainerRef.current.offsetWidth;
-      scrollContainerRef.current.scrollTo({
-        left: currentIndex * cardWidth,
-        behavior: 'smooth',
-      });
-    }
-  }, [currentIndex]);
-
-  const handlePrev = () => {
-    setAutoPlay(false);
-    setCurrentIndex((prev) => (prev - 1 + teams.length) % teams.length);
-  };
-
-  const handleNext = () => {
-    setAutoPlay(false);
-    setCurrentIndex((prev) => (prev + 1) % teams.length);
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
+            const cards = entry.target.querySelectorAll('.team-card');
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('animate-in');
+              }, index * 100);
+            });
             observer.unobserve(entry.target);
           }
         });
@@ -110,12 +72,9 @@ export default function TeamSection() {
     return () => observer.disconnect();
   }, []);
 
-  const currentTeam = teams[currentIndex];
-
   return (
     <section
       ref={containerRef}
-      id="team"
       style={{
         padding: 'clamp(3rem, 8vw, 6rem) 1rem',
         background: '#ffffff',
@@ -131,7 +90,7 @@ export default function TeamSection() {
           right: '-20%',
           width: '600px',
           height: '600px',
-          background: 'radial-gradient(circle, rgba(233, 30, 99, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(233, 30, 99, 0.03) 0%, transparent 70%)',
           borderRadius: '50%',
           pointerEvents: 'none',
         }}
@@ -143,13 +102,13 @@ export default function TeamSection() {
           left: '-10%',
           width: '500px',
           height: '500px',
-          background: 'radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(102, 126, 234, 0.03) 0%, transparent 70%)',
           borderRadius: '50%',
           pointerEvents: 'none',
         }}
       />
 
-      <div className="container" style={{ maxWidth: '1200px', position: 'relative', zIndex: 1 }}>
+      <div className="container" style={{ maxWidth: '1280px', position: 'relative', zIndex: 1 }}>
         {/* 標題區塊 */}
         <div style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 5vw, 4rem)' }}>
           <div
@@ -196,427 +155,301 @@ export default function TeamSection() {
           </p>
         </div>
 
-        {/* 輪播容器 */}
+        {/* 團隊卡片網格 - 2x2 佈局 */}
         <div
           style={{
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.5rem',
-            marginBottom: '2rem',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: 'clamp(2rem, 4vw, 3rem)',
+            maxWidth: '900px',
+            margin: '0 auto',
           }}
         >
-          {/* 左箭頭 */}
-          <button
-            onClick={handlePrev}
-            style={{
-              position: 'absolute',
-              left: '-60px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 10,
-              background: 'white',
-              border: `2px solid ${currentTeam.accentColor}`,
-              borderRadius: '50%',
-              width: '48px',
-              height: '48px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = currentTeam.accentColor;
-              (e.currentTarget as HTMLElement).style.color = 'white';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = 'white';
-              (e.currentTarget as HTMLElement).style.color = currentTeam.accentColor;
-            }}
-          >
-            <ChevronLeft size={24} color={currentTeam.accentColor} />
-          </button>
-
-          {/* 輪播卡片容器 */}
-          <div
-            ref={scrollContainerRef}
-            style={{
-              display: 'flex',
-              overflowX: 'auto',
-              scrollBehavior: 'smooth',
-              scrollSnapType: 'x mandatory',
-              gap: '1.5rem',
-              width: '100%',
-              paddingBottom: '0.5rem',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-            }}
-            onMouseEnter={() => setAutoPlay(false)}
-            onMouseLeave={() => setAutoPlay(true)}
-          >
-            {teams.map((team) => {
-              const IconComponent = team.icon;
-              const isActive = team.id === currentTeam.id;
-
-              return (
+          {teams.map((team) => {
+            const IconComponent = team.icon;
+            return (
+              <div
+                key={team.id}
+                className="team-card"
+                style={{
+                  background: 'transparent',
+                  borderRadius: '0',
+                  padding: 'clamp(1.5rem, 3vw, 2rem)',
+                  boxShadow: 'none',
+                  transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  opacity: 0,
+                  transform: 'translateY(20px)',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  overflow: 'visible',
+                  border: 'none',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                }}
+              >
+                {/* 圖示 - 黑色線條風格 */}
                 <div
-                  key={team.id}
                   style={{
-                    flex: '0 0 100%',
-                    minWidth: '100%',
-                    scrollSnapAlign: 'start',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start',
+                    width: '56px',
+                    height: '56px',
+                    background: 'transparent',
+                    borderRadius: '0',
+                    marginBottom: '1.25rem',
                     transition: 'all 0.3s ease',
+                    border: 'none',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
                   }}
                 >
-                  <div
+                  <IconComponent
+                    size={36}
                     style={{
-                      padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-                      background: '#ffffff',
-                      border: `3px solid ${team.borderColor}`,
-                      borderRadius: '16px',
-                      boxShadow: isActive
-                        ? `0 12px 32px ${team.accentColor}30`
-                        : '0 4px 12px rgba(0, 0, 0, 0.08)',
-                      transition: 'all 0.3s ease',
-                      position: 'relative',
-                      overflow: 'hidden',
+                      color: '#1C2C45',
+                      strokeWidth: 1.5,
+                      transition: 'color 0.3s ease',
+                    }}
+                    className="icon-on-hover"
+                  />
+                </div>
+
+                {/* 標題 */}
+                <h3
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    fontSize: '1.25rem',
+                    color: '#1C2C45',
+                    marginBottom: '0.35rem',
+                    lineHeight: 1.2,
+                    position: 'relative',
+                    zIndex: 1,
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  {team.title}
+                </h3>
+
+                {/* 副標題 */}
+                <p
+                  style={{
+                    fontFamily: "'Open Sans', sans-serif",
+                    fontSize: '0.85rem',
+                    color: '#999999',
+                    fontWeight: 600,
+                    marginBottom: '0.75rem',
+                    position: 'relative',
+                    zIndex: 1,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                  }}
+                >
+                  {team.subtitle}
+                </p>
+
+                {/* 完整描述 */}
+                <p
+                  style={{
+                    fontFamily: "'Open Sans', sans-serif",
+                    fontSize: '0.9rem',
+                    color: '#666666',
+                    marginBottom: '1.25rem',
+                    lineHeight: 1.7,
+                    minHeight: '4.2rem',
+                    position: 'relative',
+                    zIndex: 1,
+                    fontWeight: 400,
+                  }}
+                >
+                  {team.description}
+                </p>
+
+                {/* 統計數據 */}
+                <div
+                  style={{
+                    marginBottom: '1rem',
+                    paddingBottom: '1rem',
+                    borderBottom: '1px solid #e8e8e8',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontSize: '0.95rem',
+                      fontWeight: 700,
+                      color: '#1C2C45',
+                      letterSpacing: '0.5px',
                     }}
                   >
-                    {/* 背景裝飾 */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        right: 0,
-                        width: '150px',
-                        height: '150px',
-                        background: `radial-gradient(circle, ${team.accentColor}15 0%, transparent 70%)`,
-                        borderRadius: '50%',
-                        pointerEvents: 'none',
-                      }}
-                    />
-
-                    {/* 內容 */}
-                    <div style={{ position: 'relative', zIndex: 1 }}>
-                      {/* 標題區 */}
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '1.5rem',
-                          marginBottom: '1.5rem',
-                        }}
-                      >
-                        <div
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '72px',
-                            height: '72px',
-                            background: `${team.accentColor}15`,
-                            borderRadius: '12px',
-                            border: `2px solid ${team.accentColor}`,
-                            flexShrink: 0,
-                          }}
-                        >
-                          <IconComponent
-                            size={36}
-                            style={{
-                              color: team.accentColor,
-                              strokeWidth: 1.5,
-                            }}
-                          />
-                        </div>
-
-                        <div>
-                          <h3
-                            style={{
-                              fontFamily: "'Montserrat', sans-serif",
-                              fontWeight: 700,
-                              fontSize: '1.5rem',
-                              color: '#1C2C45',
-                              marginBottom: '0.35rem',
-                              lineHeight: 1.2,
-                            }}
-                          >
-                            {team.title}
-                          </h3>
-                          <p
-                            style={{
-                              fontFamily: "'Open Sans', sans-serif",
-                              fontSize: '0.9rem',
-                              color: team.accentColor,
-                              fontWeight: 600,
-                              textTransform: 'uppercase',
-                              letterSpacing: '0.05em',
-                            }}
-                          >
-                            {team.subtitle}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* 描述 */}
-                      <p
-                        style={{
-                          fontFamily: "'Open Sans', sans-serif",
-                          fontSize: '0.95rem',
-                          color: '#555555',
-                          lineHeight: 1.7,
-                          marginBottom: '1.5rem',
-                        }}
-                      >
-                        {team.description}
-                      </p>
-
-                      {/* 技能標籤 */}
-                      <div style={{ marginBottom: '1.5rem' }}>
-                        <p
-                          style={{
-                            fontFamily: "'Montserrat', sans-serif",
-                            fontWeight: 600,
-                            fontSize: '0.85rem',
-                            color: '#1C2C45',
-                            marginBottom: '0.75rem',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.05em',
-                          }}
-                        >
-                          核心技能
-                        </p>
-                        <div
-                          style={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            gap: '0.75rem',
-                          }}
-                        >
-                          {team.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              style={{
-                                display: 'inline-block',
-                                padding: '0.5rem 1rem',
-                                background: `${team.accentColor}15`,
-                                border: `1.5px solid ${team.accentColor}`,
-                                borderRadius: '6px',
-                                fontFamily: "'Open Sans', sans-serif",
-                                fontSize: '0.8rem',
-                                color: team.accentColor,
-                                fontWeight: 600,
-                                transition: 'all 0.2s ease',
-                                cursor: 'default',
-                              }}
-                              onMouseEnter={(e) => {
-                                (e.currentTarget as HTMLElement).style.background = team.accentColor;
-                                (e.currentTarget as HTMLElement).style.color = 'white';
-                              }}
-                              onMouseLeave={(e) => {
-                                (e.currentTarget as HTMLElement).style.background = `${team.accentColor}15`;
-                                (e.currentTarget as HTMLElement).style.color = team.accentColor;
-                              }}
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* 統計數據 */}
-                      <div
-                        style={{
-                          padding: '1rem',
-                          background: `${team.accentColor}08`,
-                          border: `1px solid ${team.borderColor}30`,
-                          borderRadius: '8px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        <p
-                          style={{
-                            fontFamily: "'Montserrat', sans-serif",
-                            fontWeight: 700,
-                            fontSize: '1.8rem',
-                            color: team.accentColor,
-                            marginBottom: '0.25rem',
-                          }}
-                        >
-                          {team.stats}
-                        </p>
-                        <p
-                          style={{
-                            fontFamily: "'Open Sans', sans-serif",
-                            fontSize: '0.85rem',
-                            color: '#666666',
-                            fontWeight: 600,
-                          }}
-                        >
-                          成功交付
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                    {team.stats}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* 右箭頭 */}
-          <button
-            onClick={handleNext}
-            style={{
-              position: 'absolute',
-              right: '-60px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 10,
-              background: 'white',
-              border: `2px solid ${currentTeam.accentColor}`,
-              borderRadius: '50%',
-              width: '48px',
-              height: '48px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = currentTeam.accentColor;
-              (e.currentTarget as HTMLElement).style.color = 'white';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = 'white';
-              (e.currentTarget as HTMLElement).style.color = currentTeam.accentColor;
-            }}
-          >
-            <ChevronRight size={24} color={currentTeam.accentColor} />
-          </button>
+                {/* 技能標籤 */}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '0.5rem',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}
+                >
+                  {team.skills.map((skill, idx) => (
+                    <span
+                      key={idx}
+                      style={{
+                        display: 'inline-block',
+                        background: '#f0f0f0',
+                        color: '#666666',
+                        padding: '0.4rem 0.75rem',
+                        borderRadius: '4px',
+                        fontFamily: "'Open Sans', sans-serif",
+                        fontSize: '0.75rem',
+                        fontWeight: 500,
+                        whiteSpace: 'nowrap',
+                        border: 'none',
+                        transition: 'all 0.3s ease',
+                        letterSpacing: '0.3px',
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLElement).style.background = '#1C2C45';
+                        (e.currentTarget as HTMLElement).style.color = 'white';
+                        (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.background = '#f0f0f0';
+                        (e.currentTarget as HTMLElement).style.color = '#666666';
+                        (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* 進度指示器 */}
+        {/* 加入我們區塊 */}
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '0.75rem',
-            marginBottom: '2rem',
-          }}
-        >
-          {teams.map((team, index) => (
-            <button
-              key={team.id}
-              onClick={() => {
-                setAutoPlay(false);
-                setCurrentIndex(index);
-              }}
-              style={{
-                width: index === currentIndex ? '32px' : '12px',
-                height: '12px',
-                background: index === currentIndex ? currentTeam.accentColor : '#ddd',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                if (index !== currentIndex) {
-                  (e.currentTarget as HTMLElement).style.background = '#bbb';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (index !== currentIndex) {
-                  (e.currentTarget as HTMLElement).style.background = '#ddd';
-                }
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* 加入我們的團隊 */}
-      <div
-        style={{
-          marginTop: 'clamp(3rem, 8vw, 6rem)',
-          padding: 'clamp(2rem, 5vw, 4rem)',
-          background: 'linear-gradient(135deg, #1C2C45 0%, #2a3f5f 100%)',
-          borderRadius: '16px',
-          textAlign: 'center',
-          color: 'white',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        <h3
-          style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 700,
-            fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-            marginBottom: '1rem',
-            lineHeight: 1.2,
-          }}
-        >
-          加入我們的團隊
-        </h3>
-        <p
-          style={{
-            fontFamily: "'Open Sans', sans-serif",
-            fontSize: '1rem',
-            marginBottom: '1.5rem',
-            opacity: 0.9,
-            lineHeight: 1.6,
-          }}
-        >
-          我們正在尋找充滿熱情的技術人才，一起打造更好的軟體世界
-        </p>
-        <a
-          href="https://www.104.com.tw/company/7p14sk0?jobsource=google"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-block',
-            padding: '0.75rem 2rem',
-            background: '#E91E63',
-            color: 'white',
-            textDecoration: 'none',
-            borderRadius: '6px',
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 600,
-            fontSize: '0.95rem',
-            transition: 'all 0.3s ease',
+            marginTop: 'clamp(3rem, 6vw, 5rem)',
+            padding: 'clamp(2rem, 4vw, 3rem)',
+            background: '#1C2C45',
+            borderRadius: '12px',
             border: 'none',
-            cursor: 'pointer',
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = '#d81b60';
-            (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = '#E91E63';
-            (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+            textAlign: 'center',
+            position: 'relative',
+            overflow: 'hidden',
+            boxShadow: '0 8px 24px rgba(28, 44, 69, 0.15)',
           }}
         >
-          查看職缺
-        </a>
+          <h3
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
+              color: '#ffffff',
+              marginBottom: '0.75rem',
+              position: 'relative',
+              zIndex: 1,
+            }}
+          >
+            加入我們的團隊
+          </h3>
+          <p
+            style={{
+              fontFamily: "'Open Sans', sans-serif",
+              fontSize: '1rem',
+              color: 'rgba(255, 255, 255, 0.85)',
+              marginBottom: '1.5rem',
+              lineHeight: 1.6,
+              position: 'relative',
+              zIndex: 1,
+            }}
+          >
+            我們正在尋找充滿熱情的技術人才，一起打造更好的軟體世界
+          </p>
+          <a
+            href="https://www.104.com.tw/company/7p14sk0?jobsource=google"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              background: '#E91E63',
+              color: 'white',
+              padding: '0.85rem 2.25rem',
+              borderRadius: '6px',
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              fontSize: '0.95rem',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              letterSpacing: '0.02em',
+              boxShadow: '0 4px 15px rgba(233, 30, 99, 0.4)',
+              position: 'relative',
+              zIndex: 1,
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)';
+              (e.currentTarget as HTMLElement).style.boxShadow =
+                '0 8px 25px rgba(233, 30, 99, 0.6)';
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+              (e.currentTarget as HTMLElement).style.boxShadow =
+                '0 4px 15px rgba(233, 30, 99, 0.4)';
+            }}
+          >
+            查看職缺
+          </a>
+        </div>
       </div>
 
       <style>{`
-        div[style*="scrollbarWidth"] {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        
-        div[style*="scrollbarWidth"]::-webkit-scrollbar {
-          display: none;
+        .team-card.animate-in {
+          animation: slideUp 0.6s ease forwards;
         }
 
-        .animate-in {
-          opacity: 1 !important;
-          transform: translateY(0) !important;
+        .icon-on-hover {
+          transition: color 0.3s ease;
+        }
+
+        .team-card:hover .icon-on-hover {
+          color: #1C2C45;
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (max-width: 768px) {
+          [style*="gridTemplateColumns: 'repeat(2, 1fr)'"] {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
     </section>
