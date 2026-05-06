@@ -172,7 +172,7 @@ export default function TeamSection() {
                 key={team.id}
                 className="team-card"
                 style={{
-                  background: 'transparent',
+                  background: '#ffffff',
                   borderRadius: '0',
                   padding: 'clamp(1.5rem, 3vw, 2rem)',
                   boxShadow: 'none',
@@ -186,9 +186,11 @@ export default function TeamSection() {
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
+                  (e.currentTarget as HTMLElement).style.background = '#f0f0f0';
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                  (e.currentTarget as HTMLElement).style.background = '#ffffff';
                 }}
               >
                 {/* 圖示 - 深紅色方形背景 + 白色線條 */}
