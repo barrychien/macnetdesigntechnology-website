@@ -74,6 +74,7 @@ export default function TeamSection() {
 
   return (
     <section
+      id="team"
       ref={containerRef}
       style={{
         padding: 'clamp(3rem, 8vw, 6rem) 1rem',
