@@ -191,16 +191,16 @@ export default function TeamSection() {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
                 }}
               >
-                {/* 圖示 - 黑色線條風格 */}
+                {/* 圖示 - 深紅色方形背景 + 白色線條 */}
                 <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'center',
                     width: '56px',
                     height: '56px',
-                    background: 'transparent',
-                    borderRadius: '0',
+                    background: '#C41E3A',
+                    borderRadius: '8px',
                     marginBottom: '1.25rem',
                     transition: 'all 0.3s ease',
                     border: 'none',
@@ -208,16 +208,16 @@ export default function TeamSection() {
                     zIndex: 1,
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)';
+                    (e.currentTarget as HTMLElement).style.background = '#f0f0f0';
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+                    (e.currentTarget as HTMLElement).style.background = '#C41E3A';
                   }}
                 >
                   <IconComponent
-                    size={36}
+                    size={32}
                     style={{
-                      color: '#1C2C45',
+                      color: '#ffffff',
                       strokeWidth: 1.5,
                       transition: 'color 0.3s ease',
                     }}
@@ -432,6 +432,10 @@ export default function TeamSection() {
         }
 
         .team-card:hover .icon-on-hover {
+          color: #1C2C45;
+        }
+
+        .team-card > div:first-child:hover .icon-on-hover {
           color: #1C2C45;
         }
 
