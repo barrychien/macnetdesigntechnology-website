@@ -115,7 +115,7 @@ export default function TeamSection() {
   return (
     <section
       ref={containerRef}
-      id="team-section"
+      id="team"
       style={{
         padding: 'clamp(3rem, 8vw, 6rem) 1rem',
         background: '#ffffff',
