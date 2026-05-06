@@ -51,7 +51,7 @@ export default function ContactSection() {
 
     try {
       // 發送到 Formspree
-      const response = await fetch('https://formspree.io/f/mdayeagn', {
+      const response = await fetch('https://formspree.io/f/xqenbdyg', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function ContactSection() {
           email: formData.email,
           subject: formData.subject || '來自悅慶資訊網站的詢問',
           message: formData.message,
-          _cc: 'service@macnetdesign.com',
+          _cc: 'barry.chien@macnetdesign.com',
         }),
       });
 

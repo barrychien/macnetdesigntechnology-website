@@ -574,7 +574,9 @@ export default function TeamSection() {
           我們正在尋找充滿熱情的技術人才，一起打造更好的軟體世界
         </p>
         <a
-          href="#"
+          href="https://www.104.com.tw/company/7p14sk0?jobsource=google"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             display: 'inline-block',
             padding: '0.75rem 2rem',
