@@ -1,7 +1,7 @@
 /**
  * 聯絡我們區塊 - 悅慶資訊
  * 設計: 深藍色背景, 左側資訊+地圖, 右側聯絡表單
- * 表單發送到 barry.chien@macnetdesign.com (透過 Formspree)
+ * 表單發送到 service@macnetdesign.com (透過 Formspree)
  * 使用 Google Maps 嵌入
  */
 import { useEffect, useRef, useState } from 'react';
@@ -411,7 +411,7 @@ export default function ContactSection() {
                     fontSize: '0.875rem',
                   }}>
                     <AlertCircle size={16} />
-                    發送失敗，請直接聯繫 barry.chien@macnetdesign.com
+                    發送失敗，請直接聯繫 service@macnetdesign.com
                   </div>
                 )}
 
