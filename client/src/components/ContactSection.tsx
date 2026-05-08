@@ -61,7 +61,7 @@ export default function ContactSection() {
           email: formData.email,
           subject: formData.subject || '來自悅慶資訊網站的詢問',
           message: formData.message,
-          _cc: 'barry.chien@macnetdesign.com',
+          _cc: 'service@macnetdesign.com',
         }),
       });
 
@@ -76,7 +76,7 @@ export default function ContactSection() {
     } catch (error) {
       console.error('表單提交錯誤:', error);
       setStatus('error');
-      toast.error('發送失敗，請直接聯繫 service@macnetdesign.com 或 barry.chien@macnetdesign.com');
+      toast.error('發送失敗，請直接聯繫 service@macnetdesign.com');
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
@@ -187,7 +187,7 @@ export default function ContactSection() {
                 {
                   icon: <Mail size={20} color="#E91E63" />,
                   label: '電子郵件',
-                  value: 'barry.chien@macnetdesign.com',
+                  value: 'service@macnetdesign.com',
                 },
               ].map((item, i) => (
                 <div key={i} style={{
