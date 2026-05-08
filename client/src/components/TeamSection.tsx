@@ -163,7 +163,7 @@ export default function TeamSection() {
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
             gap: 'clamp(2rem, 4vw, 3rem)',
-            maxWidth: '900px',
+            maxWidth: '1200px',
             margin: '0 auto',
           }}
         >
