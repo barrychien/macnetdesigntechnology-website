@@ -158,6 +158,7 @@ export default function TeamSection() {
 
         {/* 團隊卡片網格 - 2x2 佈局 */}
         <div
+          className="team-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
@@ -188,10 +189,22 @@ export default function TeamSection() {
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
                   (e.currentTarget as HTMLElement).style.background = '#f0f0f0';
+                  // 卡片 Hover 時，所有技術 TAG 背景改成 #001d33
+                  const tags = (e.currentTarget as HTMLElement).querySelectorAll('.skill-tag');
+                  tags.forEach((tag) => {
+                    (tag as HTMLElement).style.background = '#001d33';
+                    (tag as HTMLElement).style.color = 'white';
+                  });
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
                   (e.currentTarget as HTMLElement).style.background = '#ffffff';
+                  // 卡片 Leave 時，技術 TAG 恢復原色
+                  const tags = (e.currentTarget as HTMLElement).querySelectorAll('.skill-tag');
+                  tags.forEach((tag) => {
+                    (tag as HTMLElement).style.background = '#f0f0f0';
+                    (tag as HTMLElement).style.color = '#666666';
+                  });
                 }}
               >
                 {/* 圖示 - 深紅色方形背景 + 白色線條 */}
@@ -315,6 +328,7 @@ export default function TeamSection() {
                   {team.skills.map((skill, idx) => (
                     <span
                       key={idx}
+                      className="skill-tag"
                       style={{
                         display: 'inline-block',
                         background: '#f0f0f0',
@@ -330,13 +344,20 @@ export default function TeamSection() {
                         letterSpacing: '0.3px',
                       }}
                       onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = '#1C2C45';
-                        (e.currentTarget as HTMLElement).style.color = 'white';
+                        // 只有在非卡片 Hover 狀態下才改成 #1C2C45
+                        const parent = (e.currentTarget as HTMLElement).closest('.team-card') as HTMLElement | null;
+                        if (parent && parent.style.background !== '#f0f0f0') {
+                          (e.currentTarget as HTMLElement).style.background = '#1C2C45';
+                          (e.currentTarget as HTMLElement).style.color = 'white';
+                        }
                         (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
                       }}
                       onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = '#f0f0f0';
-                        (e.currentTarget as HTMLElement).style.color = '#666666';
+                        const parent = (e.currentTarget as HTMLElement).closest('.team-card') as HTMLElement | null;
+                        if (parent && parent.style.background !== '#f0f0f0') {
+                          (e.currentTarget as HTMLElement).style.background = '#f0f0f0';
+                          (e.currentTarget as HTMLElement).style.color = '#666666';
+                        }
                         (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
                       }}
                     >
@@ -348,6 +369,15 @@ export default function TeamSection() {
             );
           })}
         </div>
+
+        {/* RWD 樣式 */}
+        <style>{`
+          @media (max-width: 768px) {
+            .team-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
 
         {/* 加入我們區塊 */}
         <div
