@@ -343,23 +343,7 @@ export default function TeamSection() {
                         transition: 'all 0.3s ease',
                         letterSpacing: '0.3px',
                       }}
-                      onMouseEnter={(e) => {
-                        // 只有在非卡片 Hover 狀態下才改成 #1C2C45
-                        const parent = (e.currentTarget as HTMLElement).closest('.team-card') as HTMLElement | null;
-                        if (parent && parent.style.background !== '#f0f0f0') {
-                          (e.currentTarget as HTMLElement).style.background = '#1C2C45';
-                          (e.currentTarget as HTMLElement).style.color = 'white';
-                        }
-                        (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
-                      }}
-                      onMouseLeave={(e) => {
-                        const parent = (e.currentTarget as HTMLElement).closest('.team-card') as HTMLElement | null;
-                        if (parent && parent.style.background !== '#f0f0f0') {
-                          (e.currentTarget as HTMLElement).style.background = '#f0f0f0';
-                          (e.currentTarget as HTMLElement).style.color = '#666666';
-                        }
-                        (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
-                      }}
+                      // 移除 TAG 的 Hover 變色功能
                     >
                       {skill}
                     </span>
