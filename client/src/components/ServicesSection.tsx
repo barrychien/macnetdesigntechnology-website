@@ -327,7 +327,7 @@ export default function ServicesSection() {
             核心技術棧
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
-            {['.NET / C#', 'Java / Spring', 'React / Vue', 'Node.js', 'AWS / Azure', 'iOS Swift', 'Android Kotlin', 'Docker / K8s', 'SQL / NoSQL'].map(tech => (
+            {['.NET / C#', 'Java / Spring', 'React / Vue / Angular', 'Node.js', 'AWS / Azure / GCP', 'iOS Swift', 'Android Kotlin', 'Docker / K8s', 'SQL / NoSQL'].map(tech => (
               <div key={tech} style={{
                 background: 'white',
                 border: '1px solid #E2E8F0',
