@@ -97,7 +97,7 @@ export default function Header() {
 
           {/* 桌面導航 */}
           <nav style={{
-            display: 'none',
+            display: 'flex',
             alignItems: 'center',
             gap: '1.5rem',
             marginLeft: 'auto',
@@ -131,7 +131,7 @@ export default function Header() {
             href="#contact"
             onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
             style={{
-              display: 'none',
+              display: 'block',
               background: '#E91E63',
               color: 'white',
               padding: '0.5rem 1.25rem',
