@@ -5,7 +5,9 @@ import { Route, Switch, Router } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import { useHashLocation } from "wouter/use-hash-location";
+
+// Get the base path from environment or use default
+const BASE_PATH = import.meta.env.MODE === 'production' ? '/macnetdesigntechnology-website' : '';
 
 function AppRouter() {
   return (
@@ -23,7 +25,7 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router hook={useHashLocation}>
+          <Router base={BASE_PATH}>
             <AppRouter />
           </Router>
         </TooltipProvider>
