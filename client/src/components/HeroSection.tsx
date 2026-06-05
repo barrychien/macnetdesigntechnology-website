@@ -212,7 +212,7 @@ export default function HeroSection() {
               marginBottom: '2.5rem',
               maxWidth: '480px',
             }}>
-              悅慶資訊有限公司，提供專業的軟體駐點服務與專案開發。
+              悅慶資訊有限公司，提供專業的軟體專案開發與駐點服務。
               以 .NET、Java、前端、雲端技術為核心，協助企業實現數位轉型。
             </p>
 
