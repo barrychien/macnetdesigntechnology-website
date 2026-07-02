@@ -1,6 +1,6 @@
 /**
  * 服務項目區塊 - 悅慶資訊
- * 設計: 大型彩色圖標 + 簡潔文字，類似功能特性展示
+ * 設計: 科技感卡片 + 發光邊框 + 玻璃擬態
  */
 import { useEffect, useRef } from 'react';
 
@@ -18,7 +18,7 @@ const services = [
     shortDesc: '端到端的軟體開發解決方案',
     description: '從需求分析到上線維護，提供端到端的軟體開發解決方案，確保每個環節的品質與效率。',
     features: ['需求分析與規劃', '系統架構設計', '敏捷開發實施', '品質保證與測試'],
-    color: '#C97A9A',
+    color: '#00BFFF',
   },
   {
     icon: (
@@ -33,7 +33,7 @@ const services = [
     shortDesc: '長期技術支援與系統維護',
     description: '派遣專業技術人員到客戶現場，提供長期技術支援與系統維護，確保業務連續性與穩定運作。',
     features: ['技術諮詢顧問', '系統維護管理', '專業人力派遣', '技術培訓服務'],
-    color: '#8B9DC3',
+    color: '#FF1493',
   },
   {
     icon: (
@@ -50,7 +50,7 @@ const services = [
     shortDesc: '響應式網站與跨平台應用',
     description: '打造響應式網站與跨平台行動應用，以使用者體驗為核心，提升業務數位化競爭力。',
     features: ['響應式網頁設計', 'iOS 原生開發', 'Android 原生開發', 'UX/UI 設計規劃'],
-    color: '#7ECCC4',
+    color: '#9370DB',
   },
   {
     icon: (
@@ -69,7 +69,7 @@ const services = [
     shortDesc: 'ERP、CRM 等企業系統導入',
     description: '協助企業導入 ERP、CRM 等企業系統，實現業務流程優化，提升整體營運效率。',
     features: ['系統評估規劃', '導入專案管理', '資料遷移整合', '員工教育訓練'],
-    color: '#D4B896',
+    color: '#00D9FF',
   },
 ];
 
@@ -95,14 +95,28 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} style={{ padding: '100px 0', background: '#F8FAFC', position: 'relative', overflow: 'hidden' }}>
+    <section id="services" ref={sectionRef} style={{ 
+      padding: '100px 0', 
+      background: 'linear-gradient(135deg, rgba(15, 20, 25, 0.95) 0%, rgba(45, 27, 78, 0.8) 50%, rgba(15, 20, 25, 0.95) 100%)',
+      position: 'relative', 
+      overflow: 'hidden' 
+    }}>
       <style>{`
         @keyframes icon-float {
           0%, 100% {
             transform: translateY(0px);
           }
           50% {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+          }
+        }
+
+        @keyframes glow-pulse {
+          0%, 100% {
+            opacity: 0.6;
+          }
+          50% {
+            opacity: 1;
           }
         }
 
@@ -123,15 +137,28 @@ export default function ServicesSection() {
         }
       `}</style>
 
-      {/* 背景裝飾 */}
+      {/* 背景裝飾 - 發光圓形 */}
       <div style={{
         position: 'absolute',
-        top: 0,
-        right: 0,
+        top: '10%',
+        right: '5%',
+        width: '400px',
+        height: '400px',
+        background: 'radial-gradient(circle, rgba(0, 191, 255, 0.1) 0%, transparent 70%)',
+        borderRadius: '50%',
+        pointerEvents: 'none',
+        filter: 'blur(40px)',
+      }} />
+      <div style={{
+        position: 'absolute',
+        bottom: '10%',
+        left: '5%',
         width: '300px',
         height: '300px',
-        background: 'radial-gradient(circle, rgba(233, 30, 99, 0.05) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(255, 20, 147, 0.1) 0%, transparent 70%)',
+        borderRadius: '50%',
         pointerEvents: 'none',
+        filter: 'blur(40px)',
       }} />
 
       <div className="container">
@@ -139,29 +166,39 @@ export default function ServicesSection() {
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <div style={{
             display: 'inline-block',
-            background: 'rgba(201, 122, 154, 0.08)',
-            border: '1px solid rgba(201, 122, 154, 0.2)',
+            background: 'rgba(0, 191, 255, 0.1)',
+            border: '1px solid rgba(0, 191, 255, 0.3)',
             borderRadius: '100px',
-            padding: '0.3rem 1rem',
+            padding: '0.5rem 1.2rem',
             marginBottom: '1rem',
+            boxShadow: '0 0 15px rgba(0, 191, 255, 0.15)',
           }}>
-            <span style={{ color: '#C97A9A', fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: '0.8rem', letterSpacing: '0.1em' }}>
+            <span style={{ color: '#00BFFF', fontFamily: "'Montserrat', sans-serif", fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.1em' }}>
               OUR SERVICES
             </span>
           </div>
           <h2 style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 700,
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 800,
             fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
-            color: '#1C2C45',
+            background: 'linear-gradient(135deg, #00BFFF 0%, #FF1493 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
             marginBottom: '1rem',
           }}>
             核心服務項目
           </h2>
-          <div style={{ width: '60px', height: '4px', background: '#C97A9A', margin: '0 auto 1.5rem' }} />
+          <div style={{ 
+            width: '80px', 
+            height: '3px', 
+            background: 'linear-gradient(90deg, #00BFFF, #FF1493, transparent)',
+            margin: '0 auto 1.5rem',
+            boxShadow: '0 0 15px rgba(0, 191, 255, 0.5)',
+          }} />
           <p style={{
             fontFamily: "'Open Sans', sans-serif",
-            color: '#64748B',
+            color: 'rgba(255,255,255,0.7)',
             fontSize: '1.05rem',
             maxWidth: '560px',
             margin: '0 auto',
@@ -175,61 +212,57 @@ export default function ServicesSection() {
         {/* 服務項目網格 */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: '2.5rem',
           marginBottom: '3rem',
         }}>
           {services.map((service, index) => (
             <div
               key={index}
-              className="reveal"
+              className="reveal service-card"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 textAlign: 'center',
-                transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                 transitionDelay: `${index * 0.1}s`,
                 cursor: 'default',
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.transform = 'translateY(-12px)';
+                el.style.transform = 'translateY(-15px) scale(1.02)';
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.transform = 'translateY(0)';
+                el.style.transform = 'translateY(0) scale(1)';
               }}
             >
-              {/* 大型圖標 */}
+              {/* 大型圖標 - 發光邊框 */}
               <div
                 className="service-icon-large"
                 style={{
                   width: '120px',
                   height: '120px',
                   borderRadius: '20px',
-                  background: `linear-gradient(135deg, ${service.color}20 0%, ${service.color}05 100%)`,
-                  border: `2px solid ${service.color}30`,
+                  background: `rgba(${service.color === '#00BFFF' ? '0, 191, 255' : service.color === '#FF1493' ? '255, 20, 147' : service.color === '#9370DB' ? '147, 112, 219' : '0, 217, 255'}, 0.1)`,
+                  border: `2px solid ${service.color}`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '1.5rem',
                   color: service.color,
-                  transition: 'all 0.3s ease',
-                  boxShadow: `0 8px 24px ${service.color}15`,
+                  transition: 'all 0.4s ease',
+                  boxShadow: `0 0 30px ${service.color}40, inset 0 0 20px ${service.color}20`,
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.background = `linear-gradient(135deg, ${service.color}30 0%, ${service.color}15 100%)`;
-                  el.style.borderColor = service.color;
-                  el.style.boxShadow = `0 12px 32px ${service.color}30`;
-                  el.style.transform = 'scale(1.1)';
+                  el.style.boxShadow = `0 0 50px ${service.color}60, inset 0 0 30px ${service.color}30, 0 20px 40px rgba(0,0,0,0.3)`;
+                  el.style.transform = 'scale(1.15)';
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.background = `linear-gradient(135deg, ${service.color}20 0%, ${service.color}05 100%)`;
-                  el.style.borderColor = `${service.color}30`;
-                  el.style.boxShadow = `0 8px 24px ${service.color}15`;
+                  el.style.boxShadow = `0 0 30px ${service.color}40, inset 0 0 20px ${service.color}20`;
                   el.style.transform = 'scale(1)';
                 }}
               >
@@ -238,10 +271,10 @@ export default function ServicesSection() {
 
               {/* 標題 */}
               <h3 style={{
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 700,
-                fontSize: '1.15rem',
-                color: '#1C2C45',
+                fontSize: '1.2rem',
+                color: 'white',
                 marginBottom: '0.5rem',
               }}>
                 {service.title}
@@ -262,7 +295,7 @@ export default function ServicesSection() {
               {/* 完整描述 */}
               <p style={{
                 fontFamily: "'Open Sans', sans-serif",
-                color: '#64748B',
+                color: 'rgba(255,255,255,0.65)',
                 fontSize: '0.85rem',
                 lineHeight: 1.7,
                 marginBottom: '1.5rem',
@@ -282,8 +315,8 @@ export default function ServicesSection() {
                     key={i}
                     style={{
                       display: 'inline-block',
-                      background: `${service.color}12`,
-                      border: `1px solid ${service.color}30`,
+                      background: `${service.color}15`,
+                      border: `1px solid ${service.color}40`,
                       color: service.color,
                       padding: '0.4rem 0.9rem',
                       borderRadius: '20px',
@@ -297,13 +330,15 @@ export default function ServicesSection() {
                       const el = e.currentTarget as HTMLElement;
                       el.style.background = service.color;
                       el.style.color = 'white';
-                      el.style.transform = 'translateY(-2px)';
+                      el.style.transform = 'translateY(-3px)';
+                      el.style.boxShadow = `0 0 15px ${service.color}60`;
                     }}
                     onMouseLeave={(e) => {
                       const el = e.currentTarget as HTMLElement;
-                      el.style.background = `${service.color}12`;
+                      el.style.background = `${service.color}15`;
                       el.style.color = service.color;
                       el.style.transform = 'translateY(0)';
+                      el.style.boxShadow = 'none';
                     }}
                   >
                     {feature}
@@ -317,36 +352,43 @@ export default function ServicesSection() {
         {/* 技術棧 */}
         <div className="reveal" style={{ marginTop: '4rem', textAlign: 'center' }}>
           <p style={{
-            fontFamily: "'Open Sans', sans-serif",
-            color: '#94A3B8',
+            fontFamily: "'Montserrat', sans-serif",
+            color: 'rgba(0, 191, 255, 0.7)',
             fontSize: '0.85rem',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             marginBottom: '1.5rem',
+            fontWeight: 700,
           }}>
             核心技術棧
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
             {['.NET / C#', 'Java / Spring', 'React / Vue / Angular', 'Node.js', 'AWS / Azure / GCP', 'iOS Swift', 'Android Kotlin', 'Docker / K8s', 'SQL / NoSQL'].map(tech => (
               <div key={tech} style={{
-                background: 'white',
-                border: '1px solid #E2E8F0',
+                background: 'rgba(0, 191, 255, 0.08)',
+                border: '1px solid rgba(0, 191, 255, 0.3)',
                 borderRadius: '6px',
-                padding: '0.5rem 1.25rem',
-                fontFamily: "'Poppins', sans-serif",
+                padding: '0.6rem 1.5rem',
+                fontFamily: "'Montserrat', sans-serif",
                 fontSize: '0.85rem',
-                fontWeight: 500,
-                color: '#1C2C45',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+                fontWeight: 600,
+                color: '#00BFFF',
+                boxShadow: '0 0 15px rgba(0, 191, 255, 0.1)',
                 transition: 'all 0.3s ease',
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = '#C97A9A';
-                (e.currentTarget as HTMLElement).style.color = '#C97A9A';
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = '#00BFFF';
+                el.style.background = 'rgba(0, 191, 255, 0.15)';
+                el.style.boxShadow = '0 0 25px rgba(0, 191, 255, 0.3)';
+                el.style.transform = 'translateY(-3px)';
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = '#E2E8F0';
-                (e.currentTarget as HTMLElement).style.color = '#1C2C45';
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = 'rgba(0, 191, 255, 0.3)';
+                el.style.background = 'rgba(0, 191, 255, 0.08)';
+                el.style.boxShadow = '0 0 15px rgba(0, 191, 255, 0.1)';
+                el.style.transform = 'translateY(0)';
               }}
               >
                 {tech}
