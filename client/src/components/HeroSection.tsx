@@ -1,7 +1,7 @@
 /**
  * Hero 區塊 - 悅慶資訊
- * 設計: 數據流動美學 - 深邃藍紫背景, 動態粒子效果, 發光邊框
- * 非對稱佈局, 科技感強烈
+ * 設計: 全螢幕深藍色背景, 幾何動畫, 左側文字右側圖形
+ * 非對稱佈局, 動態粒子效果
  */
 import { useEffect, useRef } from 'react';
 
@@ -22,10 +22,9 @@ export default function HeroSection() {
       size: number; opacity: number; color: string;
     }> = [];
 
-    // 科技感色彩 - 電光藍、洋紅、紫色
-    const colors = ['rgba(0, 191, 255, 0.7)', 'rgba(255, 20, 147, 0.5)', 'rgba(147, 112, 219, 0.4)', 'rgba(255, 255, 255, 0.3)'];
+    const colors = ['rgba(233, 30, 99, 0.6)', 'rgba(100, 160, 255, 0.4)', 'rgba(255, 255, 255, 0.3)'];
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 80; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -47,10 +46,10 @@ export default function HeroSection() {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
+          if (dist < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 191, 255, ${0.25 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = `rgba(100, 160, 255, ${0.15 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
@@ -94,25 +93,24 @@ export default function HeroSection() {
       id="about"
       style={{
         minHeight: '100vh',
-        backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/tech-hero-bg-jw8C4mfjJuGBi6tusEjUaK.webp)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+        background: 'linear-gradient(135deg, #0A1628 0%, #1C2C45 40%, #0d1f35 100%)',
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
       }}
     >
-      {/* 背景遮罩層 - 深邃藍紫漸變 */}
+      {/* 背景圖片 */}
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(135deg, rgba(15, 20, 25, 0.75) 0%, rgba(45, 27, 78, 0.65) 50%, rgba(15, 20, 25, 0.75) 100%)',
-        zIndex: 1,
+        backgroundImage: `url(https://d2xsxph8kpxj0f.cloudfront.net/310519663555912533/Ht5wYqH4kwjKWwDCopdJpC/hero-bg_cf49547c.png)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        opacity: 0.25,
       }} />
 
-      {/* 動態粒子畫布 */}
+      {/* 粒子 Canvas */}
       <canvas
         ref={canvasRef}
         style={{
@@ -121,23 +119,19 @@ export default function HeroSection() {
           width: '100%',
           height: '100%',
           pointerEvents: 'none',
-          zIndex: 2,
-          opacity: 0.7,
         }}
       />
 
-      {/* 幾何裝飾 - 發光邊框 */}
+      {/* 幾何裝飾 */}
       <div style={{
         position: 'absolute',
         top: '10%',
         right: '5%',
         width: '400px',
         height: '400px',
-        border: '2px solid rgba(0, 191, 255, 0.2)',
+        border: '1px solid rgba(233, 30, 99, 0.15)',
         borderRadius: '50%',
         animation: 'geo-rotate 25s linear infinite',
-        boxShadow: '0 0 30px rgba(0, 191, 255, 0.15)',
-        zIndex: 1,
       }} />
       <div style={{
         position: 'absolute',
@@ -145,11 +139,9 @@ export default function HeroSection() {
         right: '8%',
         width: '280px',
         height: '280px',
-        border: '2px solid rgba(255, 20, 147, 0.2)',
+        border: '1px solid rgba(100, 160, 255, 0.2)',
         borderRadius: '50%',
         animation: 'geo-rotate-reverse 18s linear infinite',
-        boxShadow: '0 0 20px rgba(255, 20, 147, 0.15)',
-        zIndex: 1,
       }} />
       <div style={{
         position: 'absolute',
@@ -157,10 +149,8 @@ export default function HeroSection() {
         left: '3%',
         width: '200px',
         height: '200px',
-        border: '2px solid rgba(0, 191, 255, 0.15)',
+        border: '1px solid rgba(233, 30, 99, 0.1)',
         transform: 'rotate(45deg)',
-        boxShadow: '0 0 20px rgba(0, 191, 255, 0.1)',
-        zIndex: 1,
       }} />
 
       {/* 斜切底部 */}
@@ -172,7 +162,6 @@ export default function HeroSection() {
         height: '80px',
         background: 'white',
         clipPath: 'polygon(0 100%, 100% 0, 100% 100%)',
-        zIndex: 5,
       }} />
 
       {/* 主要內容 */}
@@ -185,38 +174,34 @@ export default function HeroSection() {
         }} className="hero-grid">
           {/* 左側文字 */}
           <div className="animate-slide-in-left">
-            {/* 標籤 - 發光效果 */}
+            {/* 標籤 */}
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
-              background: 'rgba(0, 191, 255, 0.1)',
-              border: '1px solid rgba(0, 191, 255, 0.4)',
+              background: 'rgba(233, 30, 99, 0.15)',
+              border: '1px solid rgba(233, 30, 99, 0.3)',
               borderRadius: '100px',
-              padding: '0.5rem 1.2rem',
+              padding: '0.4rem 1rem',
               marginBottom: '1.5rem',
-              boxShadow: '0 0 15px rgba(0, 191, 255, 0.2)',
             }}>
-              <div style={{ width: '8px', height: '8px', background: '#00BFFF', borderRadius: '50%', animation: 'pulse-glow 2s infinite', boxShadow: '0 0 10px #00BFFF' }} />
-              <span style={{ color: '#00BFFF', fontFamily: "'Montserrat', sans-serif", fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.1em' }}>
+              <div style={{ width: '6px', height: '6px', background: '#E91E63', borderRadius: '50%', animation: 'pulse-glow 2s infinite' }} />
+              <span style={{ color: '#E91E63', fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: '0.8rem', letterSpacing: '0.1em' }}>
                 SOFTWARE DEVELOPMENT EXPERT
               </span>
             </div>
 
             <h1 style={{
-              fontFamily: "'Montserrat', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               fontWeight: 800,
               fontSize: 'clamp(2.2rem, 4vw, 3.5rem)',
-              background: 'linear-gradient(135deg, #ffffff 0%, #00BFFF 50%, #FF1493 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              color: 'white',
               lineHeight: 1.15,
               marginBottom: '1.5rem',
               letterSpacing: '-0.02em',
             }}>
-              駕馭數據洪流<br />
-              <span style={{ background: 'linear-gradient(135deg, #00BFFF 0%, #FF1493 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>釋放無限潛能</span>
+              專業軟體開發<br />
+              <span style={{ color: '#E91E63' }}>驅動企業成長</span>
             </h1>
 
             <p style={{
@@ -231,20 +216,18 @@ export default function HeroSection() {
               以 .NET、Java、前端、雲端技術為核心，協助企業實現數位轉型。
             </p>
 
-            {/* 技術標籤 - 科技感 */}
+            {/* 技術標籤 */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '2.5rem' }}>
               {['.NET', 'Java', 'React', 'Vue', 'Cloud', 'iOS', 'Android'].map(tech => (
                 <span key={tech} style={{
-                  background: 'rgba(0, 191, 255, 0.08)',
-                  border: '1px solid rgba(0, 191, 255, 0.3)',
-                  color: 'rgba(0, 191, 255, 0.9)',
-                  padding: '0.4rem 0.9rem',
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  color: 'rgba(255,255,255,0.8)',
+                  padding: '0.3rem 0.8rem',
                   borderRadius: '4px',
-                  fontFamily: "'Montserrat', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: '0.8rem',
-                  fontWeight: 600,
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 0 10px rgba(0, 191, 255, 0.1)',
+                  fontWeight: 500,
                 }}>
                   {tech}
                 </span>
@@ -275,12 +258,12 @@ export default function HeroSection() {
           {/* 右側圖形 */}
           <div className="animate-slide-in-right" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ position: 'relative', width: '100%', maxWidth: '480px' }}>
-              {/* 主圖 - 發光邊框 */}
+              {/* 主圖 */}
               <div style={{
                 borderRadius: '16px',
                 overflow: 'hidden',
-                boxShadow: '0 0 40px rgba(0, 191, 255, 0.3), 0 30px 80px rgba(0,0,0,0.5)',
-                border: '2px solid rgba(0, 191, 255, 0.4)',
+                boxShadow: '0 30px 80px rgba(0,0,0,0.5)',
+                border: '1px solid rgba(255,255,255,0.1)',
                 animation: 'float 6s ease-in-out infinite',
               }}>
                 <img
@@ -290,19 +273,19 @@ export default function HeroSection() {
                 />
               </div>
 
-              {/* 浮動統計卡片 - 玻璃擬態 */}
+              {/* 浮動統計卡片 */}
               <div style={{
                 position: 'absolute',
                 bottom: '-20px',
                 left: '-30px',
-                background: 'rgba(0, 191, 255, 0.08)',
-                border: '1px solid rgba(0, 191, 255, 0.3)',
+                background: 'rgba(10, 22, 40, 0.95)',
+                border: '1px solid rgba(233, 30, 99, 0.3)',
                 borderRadius: '12px',
                 padding: '1rem 1.25rem',
                 backdropFilter: 'blur(20px)',
-                boxShadow: '0 0 20px rgba(0, 191, 255, 0.15), 0 10px 30px rgba(0,0,0,0.3)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
               }}>
-                <div style={{ color: '#00BFFF', fontFamily: "'Montserrat', sans-serif", fontWeight: 800, fontSize: '1.8rem' }}>15+</div>
+                <div style={{ color: '#E91E63', fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: '1.8rem' }}>15+</div>
                 <div style={{ color: 'rgba(255,255,255,0.7)', fontFamily: "'Open Sans', sans-serif", fontSize: '0.8rem' }}>年業界經驗</div>
               </div>
 
@@ -310,14 +293,14 @@ export default function HeroSection() {
                 position: 'absolute',
                 top: '-15px',
                 right: '-20px',
-                background: 'rgba(255, 20, 147, 0.08)',
-                border: '1px solid rgba(255, 20, 147, 0.3)',
+                background: 'rgba(10, 22, 40, 0.95)',
+                border: '1px solid rgba(100, 160, 255, 0.3)',
                 borderRadius: '12px',
                 padding: '1rem 1.25rem',
                 backdropFilter: 'blur(20px)',
-                boxShadow: '0 0 20px rgba(255, 20, 147, 0.15), 0 10px 30px rgba(0,0,0,0.3)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
               }}>
-                <div style={{ color: '#FF1493', fontFamily: "'Montserrat', sans-serif", fontWeight: 800, fontSize: '1.8rem' }}>50+</div>
+                <div style={{ color: '#64A0FF', fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: '1.8rem' }}>50+</div>
                 <div style={{ color: 'rgba(255,255,255,0.7)', fontFamily: "'Open Sans', sans-serif", fontSize: '0.8rem' }}>成功合作客戶</div>
               </div>
             </div>
