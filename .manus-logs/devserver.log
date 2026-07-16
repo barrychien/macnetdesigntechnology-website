@@ -1,0 +1,8 @@
+[2026-07-16T02:22:01.586Z] 2:22:01 AM [vite] (client) page reload index.html
+[2026-07-16T02:22:01.789Z] 2:22:01 AM [vite] (client) page reload client/index.html
+[2026-07-16T02:22:01.794Z] 2:22:01 AM [vite] changed tsconfig file detected: /home/ubuntu/macnet-website/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2026-07-16T02:22:10.171Z] 2:22:10 AM [vite] changed tsconfig file detected: /home/ubuntu/macnet-website/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2026-07-16T02:22:10.174Z] 2:22:10 AM [vite] (client) page reload client/index.html
+[2026-07-16T02:22:21.558Z] 2:22:21 AM [vite] (client) page reload client/index.html
+[2026-07-16T02:22:21.579Z] 2:22:21 AM [vite] changed tsconfig file detected: /home/ubuntu/macnet-website/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2026-07-16T02:23:21.482Z] 2:23:21 AM [vite] (client) page reload index.html
