@@ -26,6 +26,7 @@ const clients = [
   { name: '中租迪和', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOfijon3LCiJCpFrEye5KMMBZ2nWkzBVrwyg&s' },
   { name: '資通電腦', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1ilFxgLYZ5Y5-gi8qmHVOw9HNiP_iyg5XiQ&s' },
   { name: '碩益科技', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT686MOdlq65wfxjN-klXEoMdHdO0ki23Esyg&s' },
+  { name: 'IT Plus', logo: '/manus-storage/client-logo_1d2837d0.webp' },
 ];
 
 // 分成兩行：奇數索引為第一行，偶數索引為第二行
